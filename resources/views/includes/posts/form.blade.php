@@ -37,10 +37,10 @@
         <div class="col-6">
             <div class="mb-3">
                 <label for="type_id" class="form-label">Seleziona Categoria </label>
-                <select name="type_id" id="type_id" class="form-select">
+                <select name="type_id" id="type_id" class="form-select @error('type_id') is-invalid @elseif(old('type_id', '')) is-valid @enderror">
                     <option value="">Nessuna</option>
                     @foreach ( $types as $type )
-                        <option value="{{ $type->id }}"> {{ $type->label }}</option>
+                        <option value="{{ $type->id }}" @if(old('type_id', $project->type?->id) == $type->id) selected  @endif> {{ $type->label }}</option>
                     @endforeach
                 </select>
             </div>

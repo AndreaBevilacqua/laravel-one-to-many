@@ -42,7 +42,8 @@ class ProjectController extends Controller
             'title' => 'required|string|min:5|max:50|unique:projects',
             'content' => 'required|string',
             'image' => 'nullable|image|mimes:png,jpg,jpeg',
-            'is_published' => 'nullable|boolean'
+            'is_published' => 'nullable|boolean',
+            'type_id' => 'nullable|exists:types,id'
         ], [
             'title.required' => 'Il titolo é obbligatorio',
             'title.min' => 'Il titolo deve esssere almeno :min caratteri',
@@ -51,7 +52,8 @@ class ProjectController extends Controller
             'image.image' => 'Il file inserito non é un\immagine',
             'image.mimes' => 'Le estensioni valide sono :mimes',
             'is_published.coolean' => 'Il valore del campo non é valido',
-            'content.required' => 'Il contenuto é obbligatorio'
+            'content.required' => 'Il contenuto é obbligatorio',
+            'type_id.exists' => 'Tipo non valido'
         ]);
 
         $data = $request->all();
@@ -89,7 +91,9 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        return view('admin.projects.edit', compact('project'));
+
+        $types = Type::select('label', 'id')->get();
+        return view('admin.projects.edit', compact('project', 'types'));
     }
 
     /**
@@ -101,7 +105,8 @@ class ProjectController extends Controller
             'title' => ['required', 'string', 'min:5', 'max:50', Rule::unique('projects')->ignore($project->id)],
             'content' => 'required|string',
             'image' => 'nullable|image|mimes:png,jpg,jpeg',
-            'is_published' => 'nullable|boolean'
+            'is_published' => 'nullable|boolean',
+            'type_id' => 'nullable|exists:types,id'
         ], [
             'title.required' => 'Il titolo é obbligatorio',
             'title.min' => 'Il titolo deve esssere almeno :min caratteri',
@@ -110,7 +115,8 @@ class ProjectController extends Controller
             'image.image' => 'Il file inserito non é un\immagine',
             'image.mimes' => 'Le estensioni valide sono :mimes',
             'is_published.coolean' => 'Il valore del campo non é valido',
-            'content.required' => 'Il contenuto é obbligatorio'
+            'content.required' => 'Il contenuto é obbligatorio',
+            'type_id.exists' => 'Tipo non valido'
         ]);
         
         $data = $request->all();
