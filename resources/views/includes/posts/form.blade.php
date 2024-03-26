@@ -34,7 +34,18 @@
                 @enderror
               </div>
         </div>
-        <div class="col-11">
+        <div class="col-6">
+            <div class="mb-3">
+                <label for="type_id" class="form-label">Seleziona Categoria </label>
+                <select name="type_id" id="type_id" class="form-select">
+                    <option value="">Nessuna</option>
+                    @foreach ( $types as $type )
+                        <option value=""></option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
+        <div class="col-5">
             <div class="mb-3">
                 <label for="image" class="form-label">Inserisci un'immagine</label>
                 <input type="file" name="image" class="form-control @error('image') is-invalid @elseif(old('image', '')) is-valid @enderror" id="image" placeholder="Immagine..." value="{{old('image', $project->image)}}">
