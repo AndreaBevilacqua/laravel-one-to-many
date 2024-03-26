@@ -29,7 +29,7 @@ class ProjectController extends Controller
     public function create()
     {
         $project = new Project();
-        $types = Type::all();
+        $types = Type::select('label', 'id')->get();
         return view('admin.projects.create', compact('project', 'types'));
     }
 
