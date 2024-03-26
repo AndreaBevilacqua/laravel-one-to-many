@@ -18,4 +18,9 @@ class Project extends Model
     {
         return Carbon::create($this->$column)->format($format);
     }
+
+    public function type()
+    {
+        return $this->belongsTo(Type::class);
+    }
 }
