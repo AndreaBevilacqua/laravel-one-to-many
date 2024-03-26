@@ -34,7 +34,7 @@
           <th scope="row">{{ $project->id}}</th>
           <td>{{ $project->title}}</td>
           <td>{{ $project->slug}}</td>
-          <td>{{ $project->type ? $project->type->label : '-' }}</td>
+          <td>@if($project->type) <span class="badge" style="background-color: {{ $project->type->color }}"> {{ $project->type->label }} </span> @else Nessuna @endif</td>
           <td>{{ $project->is_published ? 'Pubblicato' : 'Bozza' }}</td>
           <td>{{ $project->getFormattedDate('created_at', 'd-m-Y H:i:s')}}</td>
           <td>{{ $project->getFormattedDate('updated_at', 'd-m-Y H:i:s')}}</td>
