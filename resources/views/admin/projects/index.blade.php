@@ -14,6 +14,7 @@
         <th scope="col">#</th>
         <th scope="col">Titolo</th>
         <th scope="col">Slug</th>
+        <th scope="col">Tipo</th>
         <th scope="col">Stato</th>
         <th scope="col">Creato il</th>
         <th scope="col">Ultima modifica</th>
@@ -33,6 +34,7 @@
           <th scope="row">{{ $project->id}}</th>
           <td>{{ $project->title}}</td>
           <td>{{ $project->slug}}</td>
+          <td>{{ $project->type ? $project->type->label : '-' }}</td>
           <td>{{ $project->is_published ? 'Pubblicato' : 'Bozza' }}</td>
           <td>{{ $project->getFormattedDate('created_at', 'd-m-Y H:i:s')}}</td>
           <td>{{ $project->getFormattedDate('updated_at', 'd-m-Y H:i:s')}}</td>
@@ -56,7 +58,7 @@
 
         @empty
         <tr>
-            <td colspan="6">
+            <td colspan="7">
                 <h3 class="text-center">Non ci sono progetti</h3>
             </td>
         </tr>
